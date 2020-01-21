@@ -20,6 +20,7 @@ public class Program {
 
 
         showLogIn();
+        showMainMenu();
 
 
     }
@@ -27,7 +28,14 @@ public class Program {
 
 
 
-    public void showMainMenu(){}
+    public void showMainMenu(){
+        if (isLoggedIn) {
+            System.out.print("\nMAIN MENU \n__________\nLogged in as: " + loggedInAs[0].getName() + "\n__________\nOptions: \n 1, option 1 \n 2, option 2 \n 3, option 3" );
+        }
+        else {
+            showLogIn();
+        }
+    }
 
     public void showAddUser(){
 
@@ -84,8 +92,8 @@ public class Program {
 
 
                 }
-                else if(isLoggedIn = false){
-                    System.out.println("wrong username or password");
+                else{
+                    System.out.println("\n wrong username or password\n");
                 }
             }
         }
