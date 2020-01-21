@@ -24,6 +24,27 @@ public class Users {
         return borrowers;
     }
 
+    public User matchLoggin (String username, String password, Boolean isLibrarian){
+        if(isLibrarian) {
+            for(Librarian librarian : librarians) {
+                if(librarian.getName().equals(username) && librarian.getPassword().equals(password)) {
+                    return librarian;
+                }
+            }
+        }
+        else {
+            for(Borrower borrower : borrowers) {
+                if(borrower.getName().equals(username) && borrower.getPassword().equals(password)) {
+                    return borrower;
+                }
+            }
+        }
+        return null;
+    }
+
+
+
+
     public Users() {
     }
 }

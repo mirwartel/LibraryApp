@@ -36,7 +36,7 @@ public class Program {
         System.out.println("Enter new password: ");
         String newUserPassword = scanner.nextLine();
         userList.addNewBorrower(newUserName, newUserPassword);
-
+        System.out.println("New User added, please logg in." + "\n");
     };
 
     public void showLoggIn(){
@@ -55,8 +55,9 @@ public class Program {
                 String userName = scanner.nextLine();
                 System.out.println("Enter Password");
                 String password = scanner.nextLine();
-                if(userList.getBorrowers().contains(userName) && userList.getBorrowers().contains(password)){
+                if(userList.matchLoggin(userName, password, false) != null){
                     System.out.println("logged in");
+                    isLoggedIn = true;
 
                 }
                 else {
