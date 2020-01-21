@@ -5,8 +5,13 @@ import java.util.ArrayList;
 public abstract class User {
     private String name;
     private String password;
+    private boolean isLibrarian = false;
 
-    public User(String name, String password) {
+    public boolean isLibrarian() {
+        return isLibrarian;
+    }
+
+    public User(String name, String password, boolean isLibrarian) {
         this.name = name;
         this.password = password;
     }

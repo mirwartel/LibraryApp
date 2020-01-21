@@ -1,12 +1,13 @@
 package com.company;
 
-import java.util.ArrayList;
+import java.awt.*;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Program {
 
     private Library library = new Library();
-    private User[] loggedInAs = new User[0];
+    private User[] loggedInAs = new User[1];
     private boolean isLoggedIn = false;
     private Users userList = new Users();
 
@@ -18,7 +19,7 @@ public class Program {
         library.printAvilableBooks();
 
 
-        showLoggIn();
+        showLogIn();
 
 
     }
@@ -30,17 +31,28 @@ public class Program {
 
     public void showAddUser(){
 
-        System.out.println("Enter new user name: ");
+        System.out.println("1, New account borrower." + "\n" + "2, New account Librarian" + "\n" + "Account type: ");
         Scanner scanner = new Scanner(System.in);
+        String accountType = scanner.nextLine();
+        System.out.println("Enter new user name: ");
         String newUserName = scanner.nextLine();
         System.out.println("Enter new password: ");
         String newUserPassword = scanner.nextLine();
-        userList.addNewBorrower(newUserName, newUserPassword);
-        System.out.println("New User added, please logg in." + "\n");
+
+        if(accountType.equals("1")) {
+            userList.addNewBorrower(newUserName, newUserPassword);
+            System.out.println("New User added, please login." + "\n");
+        }
+        if(accountType.equals("2")) {
+            userList.addNewLibrarian(newUserName, newUserPassword);
+            System.out.println("New User added, please login." + "\n");
+        }
+
     };
 
-    public void showLoggIn(){
-        while (!isLoggedIn){
+    public void showLogIn(){
+        while(!isLoggedIn){
+
 
 
 
@@ -50,17 +62,29 @@ public class Program {
                 showAddUser();
             }
             else{
-                System.out.println("Enter user name: ");
+                System.out.println("1, Login Borrower." + "\n" + "2, Login Librarian" + "\n" + "Login type: ");
                 Scanner scanner = new Scanner(System.in);
+                String loginType = scanner.nextLine();
+                System.out.println("Enter user name: ");
+
                 String userName = scanner.nextLine();
                 System.out.println("Enter Password");
                 String password = scanner.nextLine();
-                if(userList.matchLoggin(userName, password, false) != null){
-                    System.out.println("logged in");
+                if (loginType.equals("1") && userList.matchLoggin(userName, password, false) != null){
+                    System.out.println("logged in as borrower: " + userName);
+                    loggedInAs[0] = userList.matchLoggin(userName, password, false);
                     isLoggedIn = true;
 
+
                 }
-                else {
+                else if (loginType.equals("2") && userList.matchLoggin(userName, password, true) != null){
+                    System.out.println("logged in as Librarian: " + userName);
+                    loggedInAs[0] = userList.matchLoggin(userName, password, true);
+                    isLoggedIn = true;
+
+
+                }
+                else if(isLoggedIn = false){
                     System.out.println("wrong username or password");
                 }
             }

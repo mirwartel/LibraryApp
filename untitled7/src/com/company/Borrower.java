@@ -7,7 +7,7 @@ public class Borrower extends User{
 
 
     public Borrower(String name, String password) {
-        super(name, password);
+        super(name, password, false);
 
 
 

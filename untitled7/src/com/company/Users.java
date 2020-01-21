@@ -15,7 +15,10 @@ public class Users {
         Borrower newBorrower = new Borrower(name, password);
         Users.borrowers.add(newBorrower);
     }
-
+    public void addNewLibrarian(String name, String password) {
+        Librarian newLibrarian = new Librarian(name, password);
+        Users.librarians.add(newLibrarian);
+    }
     public ArrayList<Librarian> getLibrarians() {
         return librarians;
     }
@@ -39,6 +42,7 @@ public class Users {
                 }
             }
         }
+
         return null;
     }
 
