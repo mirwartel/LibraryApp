@@ -15,7 +15,11 @@ public class Library {
         this.availableBooks.add(book);
     }
 
-public void printAvilableBooksTotal() {
+    public void addLendedBook(Book book) {
+        this.lendedBooks.add(book);
+    }
+
+    public void printAvilableBooksTotal() {
     System.out.print("Library{" + "\n" +
             "Available Books Total: " + availableBooks.size() + "\n");
 }
@@ -26,6 +30,24 @@ public void printAvilableBooksTotal() {
 
         }
 
+
+    }
+
+    public void loadBooks() {
+        if ((ArrayList<Book>) FileUtility.loadObject("untitled7/src/com/company/files/avilableBooks.ser") != null || (ArrayList<Book>) FileUtility.loadObject("untitled7/src/com/company/files/lendedBooks.ser") != null) {
+
+            availableBooks = (ArrayList<Book>) FileUtility.loadObject("untitled7/src/com/company/files/avilableBooks.ser");
+            lendedBooks = (ArrayList<Book>) FileUtility.loadObject("untitled7/src/com/company/files/lendedBooks.ser");
+        }
+
+
+    }
+
+    ;
+
+    public void saveBooks() {
+        FileUtility.saveObject("untitled7/src/com/company/files/avilableBooks.ser", availableBooks);
+        FileUtility.saveObject("untitled7/src/com/company/files/lendedBooks.ser", lendedBooks);
 
     }
 

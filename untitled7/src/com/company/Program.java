@@ -1,6 +1,5 @@
 package com.company;
 
-import java.nio.file.NoSuchFileException;
 import java.util.Scanner;
 
 public class Program {
@@ -19,13 +18,13 @@ public class Program {
 
 
         showLogIn();
-        showMainMenu();
+        showMainMenuBorrower();
 
 
     }
 
 
-    public void showMainMenu() {
+    public void showMainMenuBorrower() {
         if (isLoggedIn) {
             System.out.print("\nMAIN MENU \n__________\nLogged in as: " + loggedInAs[0].getName() + "\n__________\nOptions: \n 1, Search title \n 2, View borrowed titles \n 3, log out \n");
             Scanner scanner = new Scanner(System.in);
@@ -35,6 +34,10 @@ public class Program {
 
                     break;
                 case "2":
+
+                    Borrower currentUser = (Borrower) loggedInAs[0];
+                    currentUser.addBorrowedBooks(new Book("bajs", "bajs", 1995, "bajs"));
+                    System.out.println(currentUser.getBorrowedBooks());
                     break;
 
                 case "3":
