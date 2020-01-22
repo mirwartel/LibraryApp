@@ -1,11 +1,13 @@
 package com.company;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class User {
+public abstract class User implements Serializable {
     private String name;
     private String password;
     private boolean isLibrarian = false;
+
 
     public boolean isLibrarian() {
         return isLibrarian;
