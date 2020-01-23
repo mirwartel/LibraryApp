@@ -1,48 +1,71 @@
 package com.company;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Library {
-    private ArrayList<Book> availableBooks = new ArrayList<Book>();
-    private ArrayList<Book> lendedBooks = new ArrayList<Book>();
+public class Library implements Serializable {
+    private ArrayList<Book> allBooks = new ArrayList<Book>();
+
 
     public Library() {
 
     }
 
 
-    public void addAvailableBook(Book book) {
-        this.availableBooks.add(book);
+    public void addBook(Book book) {
+        this.allBooks.add(book);
     }
 
-public void printAvilableBooksTotal() {
-    System.out.print("Library{" + "\n" +
-            "Available Books Total: " + availableBooks.size() + "\n");
-}
-    public void printAvilableBooks() {
 
-        for (Book availableBook : availableBooks) {
-            System.out.println(availableBook);
+
+    public void printAvilableBooksTotal() {
+    System.out.print("Library{" + "\n" +
+            "Available Books Total: " + allBooks.size() + "\n");
+}
+    public void printAllBooks() {
+
+        for (Book availableBook : allBooks) {
+            System.out.println(availableBook.toStringShort());
+
+
+        }
+
+
+    }
+    public Book getBookByIndex(int index){
+        return allBooks.get(index);
+    };
+
+    public void loadBooks() {
+        if ((ArrayList<Book>) FileUtility.loadObject("untitled7/src/com/company/files/allBooks.ser") != null) {
+
+            allBooks = (ArrayList<Book>) FileUtility.loadObject("untitled7/src/com/company/files/allBooks.ser");
 
         }
 
 
     }
 
-    public void setAvailableBooks(ArrayList<Book> availableBooks) {
-        this.availableBooks = availableBooks;
+    public void removeBookByIndex(int index){
+        allBooks.remove(index);
     }
 
-    public void setLendedBooks(ArrayList<Book> lendedBooks) {
-        this.lendedBooks = lendedBooks;
+    public void saveBooks() {
+        FileUtility.saveObject("untitled7/src/com/company/files/allBooks.ser", allBooks);
+
+
     }
 
-    public ArrayList<Book> getAvailableBooks() {
-        return availableBooks;
+    public void setAllBooks(ArrayList<Book> allBooks) {
+        this.allBooks = allBooks;
     }
 
-    public ArrayList<Book> getLendedBooks() {
-        return lendedBooks;
+
+
+    public ArrayList<Book> getAllBooks() {
+        return allBooks;
     }
+
+
 
 }
