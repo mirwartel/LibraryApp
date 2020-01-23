@@ -1,70 +1,71 @@
 package com.company;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Library {
-    private ArrayList<Book> availableBooks = new ArrayList<Book>();
-    private ArrayList<Book> lendedBooks = new ArrayList<Book>();
+public class Library implements Serializable {
+    private ArrayList<Book> allBooks = new ArrayList<Book>();
+
 
     public Library() {
 
     }
 
 
-    public void addAvailableBook(Book book) {
-        this.availableBooks.add(book);
+    public void addBook(Book book) {
+        this.allBooks.add(book);
     }
 
-    public void addLendedBook(Book book) {
-        this.lendedBooks.add(book);
-    }
+
 
     public void printAvilableBooksTotal() {
     System.out.print("Library{" + "\n" +
-            "Available Books Total: " + availableBooks.size() + "\n");
+            "Available Books Total: " + allBooks.size() + "\n");
 }
-    public void printAvilableBooks() {
+    public void printAllBooks() {
 
-        for (Book availableBook : availableBooks) {
-            System.out.println(availableBook);
+        for (Book availableBook : allBooks) {
+            System.out.println(availableBook.toStringShort());
+
 
         }
 
 
     }
+    public Book getBookByIndex(int index){
+        return allBooks.get(index);
+    };
 
     public void loadBooks() {
-        if ((ArrayList<Book>) FileUtility.loadObject("untitled7/src/com/company/files/avilableBooks.ser") != null || (ArrayList<Book>) FileUtility.loadObject("untitled7/src/com/company/files/lendedBooks.ser") != null) {
+        if ((ArrayList<Book>) FileUtility.loadObject("untitled7/src/com/company/files/allBooks.ser") != null) {
 
-            availableBooks = (ArrayList<Book>) FileUtility.loadObject("untitled7/src/com/company/files/avilableBooks.ser");
-            lendedBooks = (ArrayList<Book>) FileUtility.loadObject("untitled7/src/com/company/files/lendedBooks.ser");
+            allBooks = (ArrayList<Book>) FileUtility.loadObject("untitled7/src/com/company/files/allBooks.ser");
+
         }
 
 
     }
 
-    ;
+    public void removeBookByIndex(int index){
+        allBooks.remove(index);
+    }
 
     public void saveBooks() {
-        FileUtility.saveObject("untitled7/src/com/company/files/avilableBooks.ser", availableBooks);
-        FileUtility.saveObject("untitled7/src/com/company/files/lendedBooks.ser", lendedBooks);
+        FileUtility.saveObject("untitled7/src/com/company/files/allBooks.ser", allBooks);
+
 
     }
 
-    public void setAvailableBooks(ArrayList<Book> availableBooks) {
-        this.availableBooks = availableBooks;
+    public void setAllBooks(ArrayList<Book> allBooks) {
+        this.allBooks = allBooks;
     }
 
-    public void setLendedBooks(ArrayList<Book> lendedBooks) {
-        this.lendedBooks = lendedBooks;
+
+
+    public ArrayList<Book> getAllBooks() {
+        return allBooks;
     }
 
-    public ArrayList<Book> getAvailableBooks() {
-        return availableBooks;
-    }
 
-    public ArrayList<Book> getLendedBooks() {
-        return lendedBooks;
-    }
 
 }

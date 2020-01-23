@@ -3,6 +3,7 @@ package com.company;
 import java.util.ArrayList;
 
 public class Borrower extends User{
+    private ArrayList<Book> borrowedBooks = new ArrayList<Book>();
     public ArrayList<Book> getBorrowedBooks() {
         return borrowedBooks;
     }
@@ -12,7 +13,7 @@ public class Borrower extends User{
     };
 
 
-    private ArrayList<Book> borrowedBooks = new ArrayList();
+
 
 
     public Borrower(String name, String password) {
