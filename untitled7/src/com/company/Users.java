@@ -48,7 +48,7 @@ public class Users {
     }
 
     public void loadUsers() {
-        if ((ArrayList<Librarian>) FileUtility.loadObject("untitled7/src/com/company/files/librarians.ser") != null || (ArrayList<Borrower>) FileUtility.loadObject("untitled7/src/com/company/files/librarians.ser") != null) {
+        if ((ArrayList<Librarian>) FileUtility.loadObject("untitled7/src/com/company/files/librarians.ser") != null || (ArrayList<Borrower>) FileUtility.loadObject("untitled7/src/com/company/files/borrowers.ser") != null) {
 
             librarians = (ArrayList<Librarian>) FileUtility.loadObject("untitled7/src/com/company/files/librarians.ser");
             borrowers = (ArrayList<Borrower>) FileUtility.loadObject("untitled7/src/com/company/files/borrowers.ser");

@@ -9,6 +9,9 @@ public class Book implements Serializable {
     private String description;
     private boolean isAvailable = true;
 
+    public Book(boolean isAvailable) {
+        this.isAvailable = isAvailable;
+    }
 
     @Override
     public String toString() {
