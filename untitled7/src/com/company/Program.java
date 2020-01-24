@@ -227,9 +227,9 @@ public class Program {
 
     private void showAllLendedBooksMenu() {
         library.loadBooks();
-        System.out.print("List of all books, user can not borrow from this menu \n ");
+        System.out.print("List of all lended books\n ");
         for (int i = 0; i < library.getLendedBooks().size(); i++) {
-            System.out.println("\n "  + library.getLendedBookByIndex(i).toString());
+            System.out.println("\n "  + library.getLendedBookByIndex(i).toString() + library.getLendedBookByIndex(i).getBorrowedBy() );
 
 
         }}
@@ -292,10 +292,7 @@ public class Program {
 
             library.borrowBook(book);
             book.setBorrowedBy(currentBorrower);
-            book.setIsAvailable(false);
             currentBorrower.addBorrowedBooks(book);
-            library.getLendedBooks().add(book);
-            library.getAvailableBooks().remove(book);
             userList.replaceBorrower((Borrower) getLoggedInAs());
             userList.saveUsers();
             library.saveBooks();

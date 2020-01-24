@@ -3,15 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="5c574064-f1ae-4c6a-b24e-13df370150fe" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled7/out/production/LibraryApp/com/company/Library.class" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/out/production/LibraryApp/com/company/Library.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/untitled7/out/production/LibraryApp/com/company/Program.class" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/out/production/LibraryApp/com/company/Program.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/untitled7/out/production/LibraryApp/com/company/files/borrowers.ser" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/out/production/LibraryApp/com/company/files/borrowers.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/untitled7/out/production/LibraryApp/com/company/files/lendedBooks.ser" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/out/production/LibraryApp/com/company/files/lendedBooks.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled7/out/production/LibraryApp/com/company/files/librarians.ser" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/out/production/LibraryApp/com/company/files/librarians.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled7/src/com/company/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/src/com/company/Library.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/untitled7/src/com/company/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/src/com/company/Program.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled7/src/com/company/files/borrowers.ser" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/src/com/company/files/borrowers.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/untitled7/src/com/company/files/lendedBooks.ser" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/src/com/company/files/lendedBooks.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled7/src/com/company/files/librarians.ser" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/src/com/company/files/librarians.ser" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,22 +123,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="563" y="374" key="FileDocumentManager.FileCacheConflict/0.0.1920.1040@0.0.1920.1040" timestamp="1579689878192" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1579891701264">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1579892115967">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1579891701264" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1579891701264">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1579892115967" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1579892115967">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1579891701264" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1579891701264">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1579892115967" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1579892115967">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1579891701264" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1579891701264">
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1579892115967" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1579892115967">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1579891701264" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1579892115967" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1579812297444">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -162,10 +159,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1579603552525" />
-    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1579859567756">
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1579891839517">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1579859567756" />
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1579891839517" />
     <state x="702" y="148" key="refactoring.ChangeSignatureDialog" timestamp="1579706177543">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
