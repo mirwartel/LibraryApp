@@ -68,9 +68,7 @@ public class Library implements Serializable {
 
     }
 
-    public void removeBookByIndex(int index){
-        availableBooks.remove(index);
-    }
+
 
     public void saveBooks() {
         FileUtility.saveObject("untitled7/src/com/company/files/availableBooks.ser", availableBooks);
