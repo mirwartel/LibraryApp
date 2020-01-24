@@ -2,19 +2,31 @@ package com.company;
 
 import java.io.Serializable;
 
-public class Book implements Serializable {
+public class Book  implements Serializable {
     private String title;
     private String author;
     private int year;
     private String description;
-    private boolean isAvailable = true;
+    private boolean isAvailable;
+    private Borrower borrowedBy;
+    private static final long serialVersionUID = 8626376676615859420L;
 
-    public Book(boolean isAvailable) {
-        this.isAvailable = isAvailable;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    @Override
-    public String toString() {
+    public void setBorrowedBy(Borrower borrowedBy) {
+        this.borrowedBy = borrowedBy;
+    }
+
+    public User getBorrowedBy() {
+        return borrowedBy;
+    }
+
+
+
+
+    public String toStringLong() {
         return
                 "Title: " + title +
                 ", Author: " + author +
@@ -26,7 +38,8 @@ public class Book implements Serializable {
     public String isAvailableToString() {
         if (isAvailable = true)
         {        return " Available";}
-        else {return " Not available";}
+        else if (isAvailable = false){ return " Not available";}
+        else {return null;}
     }
 
     public String getTitle() {
@@ -37,15 +50,16 @@ public class Book implements Serializable {
         return author;
     }
 
-    public void setAvailable(boolean available) {
+    public void setIsAvailable(boolean available) {
         isAvailable = available;
+
     }
 
-    public boolean isAvailable() {
+    public boolean getIsAvailable() {
         return isAvailable;
     }
-
-    public String toStringShort() {
+    @Override
+    public String toString() {
         return
 
                 "Title: " + title +
@@ -60,5 +74,6 @@ public class Book implements Serializable {
         this.author = author;
         this.description = description;
         this.year = year;
+        isAvailable = true;
     }
 }

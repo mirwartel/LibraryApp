@@ -1,24 +1,25 @@
 package com.company;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Users {
+public class Users implements Serializable {
 
-    private static ArrayList<Librarian> librarians = new ArrayList<Librarian>();
-    private static ArrayList<Borrower> borrowers = new ArrayList<Borrower>();
+    private  ArrayList<Librarian> librarians = new ArrayList<Librarian>();
+    private  ArrayList<Borrower> borrowers = new ArrayList<Borrower>();
 
     public void setLibrarians(ArrayList<Librarian> librarians) {
-        Users.librarians = librarians;
+        librarians = librarians;
     }
 
     public void addNewBorrower(String name, String password) {
         Borrower newBorrower = new Borrower(name, password);
-        Users.borrowers.add(newBorrower);
+        borrowers.add(newBorrower);
     }
 
     public void addNewLibrarian(String name, String password) {
         Librarian newLibrarian = new Librarian(name, password);
-        Users.librarians.add(newLibrarian);
+        librarians.add(newLibrarian);
     }
 
     public ArrayList<Librarian> getLibrarians() {
@@ -28,6 +29,23 @@ public class Users {
     public ArrayList<Borrower> getBorrowers() {
         return borrowers;
     }
+
+    public void replaceBorrower(Borrower user) {
+
+        for (int i = 0; i < borrowers.size(); i++) {
+            User userInUsers = borrowers.get(i);
+            if (userInUsers.getName().equals(user.getName())) {
+
+                borrowers.set(i, user);
+                saveUsers();
+            }
+        };
+
+
+
+    }
+
+
 
     public User matchLogIn(String username, String password, Boolean isLibrarian) {
         if (isLibrarian) {
@@ -47,25 +65,38 @@ public class Users {
         return null;
     }
 
-    public void loadUsers() {
-        if ((ArrayList<Librarian>) FileUtility.loadObject("untitled7/src/com/company/files/librarians.ser") != null || (ArrayList<Borrower>) FileUtility.loadObject("untitled7/src/com/company/files/borrowers.ser") != null) {
+    public void loadBorrowers() {
 
-            librarians = (ArrayList<Librarian>) FileUtility.loadObject("untitled7/src/com/company/files/librarians.ser");
+
+        if (FileUtility.loadObject("untitled7/src/com/company/files/borrowers.ser") != null) {
+
             borrowers = (ArrayList<Borrower>) FileUtility.loadObject("untitled7/src/com/company/files/borrowers.ser");
         }
 
 
     }
 
-    ;
-
-    public void saveUsers() {
-        FileUtility.saveObject("untitled7/src/com/company/files/librarians.ser", librarians);
-        FileUtility.saveObject("untitled7/src/com/company/files/borrowers.ser", borrowers);
-
-    }
+    public void loadLibrarians() {
 
 
-    public Users() {
-    }
-}
+        if (FileUtility.loadObject("untitled7/src/com/company/files/librarians.ser") != null) {
+
+            librarians = (ArrayList<Librarian>) FileUtility.loadObject("untitled7/src/com/company/files/librarians.ser");
+        }}
+
+
+;
+
+      public void saveUsers(){
+        FileUtility.saveObject("untitled7/src/com/company/files/librarians.ser",librarians);
+        FileUtility.saveObject("untitled7/src/com/company/files/borrowers.ser",borrowers);
+
+        }
+
+
+public Users(){
+          loadLibrarians();
+          loadBorrowers();
+
+        }}
+

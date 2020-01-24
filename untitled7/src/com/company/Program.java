@@ -1,6 +1,6 @@
 package com.company;
 
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Program {
@@ -14,13 +14,7 @@ public class Program {
     public Program() {
 
 
-        library.addBook(new Book("bajs", "bejd", 1994, "bajs"));
-        library.addBook(new Book("bajs2", "bejd2", 1995, "bajs2"));
-        library.printAllBooks();
-
-
         showLogIn();
-        showMainMenuBorrower();
 
 
     }
@@ -28,57 +22,115 @@ public class Program {
 
     public void showMainMenuBorrower() {
         if (isLoggedIn) {
-            System.out.print("\nMAIN MENU \n__________\nLogged in as: " + loggedInAs[0].getName() + "\n__________\nOptions: \n 1, View all titles \n 2, View borrowed titles \n 3, log out \n");
+            System.out.print("\nMAIN MENU \n__________\nLogged in as: " + loggedInAs[0].getName() + "\n__________\nOptions: \n 1, View all titles \n 2, View borrowed titles \n 3, Search Book \n 4, log out \n");
             Scanner scanner = new Scanner(System.in);
-            String mainMenusSelections = scanner.nextLine();
-            switch (mainMenusSelections) {
-                case "1":
 
-                    showAllBooksInLibraryMenu();
+            while (true) {
+                try {
+                    String mainMenusSelections = scanner.nextLine();
+                    switch (mainMenusSelections) {
+                        case "1":
+
+                            showAllBooksInLibraryMenu();
 
 
-                    break;
-                case "2":
+                            break;
 
-                    Borrower currentUser = (Borrower) loggedInAs[0];
-                    currentUser.addBorrowedBooks(new Book("bajs", "bajs", 1995, "bajs"));
-                    System.out.println(currentUser.getBorrowedBooks());
-                    break;
+                        case "2":
+                            showBorrowerBorrowedBooksMenu();
 
-                case "3":
-                    logOut();
 
+                            break;
+
+                        case "3":
+                            showBorrowerSearchMenu();
+
+
+                            break;
+
+
+                        case "4":
+                            logOut();
+                            return;
+
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("invalid input");
+                }
             }
         } else {
             showLogIn();
         }
     }
 
-    private void showAllBooksMenuBorrower() {
-
-        System.out.print(" \n__________\nOptions: \n 1, View all titles \n 2, View borrowed titles \n return to main menu:  \n");
+    public void showBorrowerSearchMenu() {
+        System.out.println("1, Search books by title. n\" 2, Search books by author. n\" 3, return to main menu");
         Scanner scanner = new Scanner(System.in);
-        int scannerSelection = scanner.nextInt();
-
-
-        switch (scannerSelection) {
-
-            case 1:
-
-
+        String userInput = scanner.nextLine();
+        switch (userInput) {
+            case "1":
+                ArrayList<Book> searchResultTitle = new ArrayList<>();
+                System.out.println("Enter title: ");
+                userInput = scanner.nextLine();
+                searchResultTitle = library.searchBookTitle(userInput);
+                if (searchResultTitle == null) {
+                    System.out.println("No results found");
+                } else System.out.println(searchResultTitle);
                 break;
-            case 2:
-
-                Borrower currentUser = (Borrower) loggedInAs[0];
-
-                System.out.println("Borrowed titels for currentUser: " + currentUser.getBorrowedBooks());
+            case "2":
+                ArrayList<Book> searchResultAuthor = new ArrayList<>();
+                System.out.println("Enter author: ");
+                userInput = scanner.nextLine();
+                searchResultAuthor = library.searchBookAuthor(userInput);
+                if (searchResultAuthor==null) {
+                    System.out.println("No results found");
+                } else System.out.println(searchResultAuthor);
                 break;
-
-            case 3:
+            case "3":
                 showMainMenuBorrower();
+        }
+    }
+
+    ;
+
+    private void showBorrowerBorrowedBooksMenu() {
+
+        Borrower currentUser = (Borrower) loggedInAs[0];
+
+        System.out.println("Your borrowed books: \n");
+        for (int i = 0; i < currentUser.getBorrowedBooks().size(); i++) {
+            System.out.println("\n" + i + " " + currentUser.getBorrowedBooks().get(i).toString());
 
 
         }
+        System.out.println("Input index number of book to return it. \n input 'm' to return to main menu");
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            String userInput = scanner.nextLine();
+            if (userInput.equals("m"))
+                showMainMenuBorrower();
+            else {
+                try {
+                    int bookIndex = Integer.parseInt(userInput);
+                    Book selectedBook = currentUser.getBorrowedBooks().get(bookIndex);
+                    currentUser.getBorrowedBooks().remove(bookIndex);
+                    selectedBook.setIsAvailable(true);
+                    selectedBook.setBorrowedBy(null);
+                    library.addBook(selectedBook);
+                    System.out.println(selectedBook + " has been returned.");
+                    library.saveBooks();
+                    currentUser.saveBorrowedBooks();
+                    userList.replaceBorrower(currentUser);
+                    showBorrowerBorrowedBooksMenu();
+                    break;
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("No book at given index");
+                }
+            }
+        }
+
+
     }
 
     ;
@@ -92,102 +144,88 @@ public class Program {
     }
 
     private void showAllBooksInLibraryMenu() {
-        System.out.print("ALL AVAILABLE BOOKS \n ----------- \nEnter the number before a book below to show info and borrow. \nto return to main menu, enter 'm'.");
-        for (int i = 0; i < library.getAllBooks().size(); i++) {
-            System.out.println(i + ", " + library.getBookByIndex(i).toStringShort());
+        library.loadBooks();
+        System.out.print("ALL AVAILABLE BOOKS \n ----------- \nEnter the number before a book below to show info and borrow. \nto return to main menu, enter 'm'.\n");
+        for (int i = 0; i < library.getAvailableBooks().size(); i++) {
+            System.out.println("\n" + i + " " + library.getBookByIndex(i).toString());
 
 
         }
-        System.out.print("ALL AVAILABLE BOOKS \n ----------- \nEnter the number before a book below to show info and borrow. \nto return to main menu, enter 'm'.\n");
 
         Scanner scanner = new Scanner(System.in);
-        int bookIndex = scanner.nextInt();
-        Book selectedBook = library.getBookByIndex(bookIndex);
-        System.out.println(selectedBook.toString());
-        showBookMenu(selectedBook);
+        while (true) {
+            String userInput = scanner.nextLine();
+            if (userInput.equals("m"))
+                showMainMenuBorrower();
+            else {
+                try {
+                    int bookIndex = Integer.parseInt(userInput);
+                    Book selectedBook = library.getBookByIndex(bookIndex);
+                    showBookMenu(selectedBook);
+                    break;
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("No book at given index");
+                }
+            }
+        }
 
 
     }
 
     private void showBookMenu(Book book) {
-        System.out.println(book.toString());
-        if (book.isAvailable()){
+        System.out.println(book.toStringLong());
+        System.out.println("enter 'm' to return to Main Menu. \n Enter 'c' to return to previous menu");
+        if (book.getIsAvailable()) {
             System.out.println("to borrow this book, enter 'b'");
         }
-        System.out.println("enter 'm' to return to Main Menu. \n Enter 'c' to return to previous menu");
-        Scanner scanner = new Scanner(System.in);
-        String inputChoice = scanner.nextLine();
 
-        switch (inputChoice){
+        Scanner scanner = new Scanner(System.in);
+
+
+        String inputChoice = scanner.nextLine();
+        switch (inputChoice) {
             case "m":
                 showMainMenuBorrower();
                 break;
             case "b":
-                if (!(book.isAvailable() && getLoggedInAs().isLibrarian())){
-                    Borrower currentBorrower = (Borrower) getLoggedInAs();
-                    currentBorrower.addBorrowedBooks(book);
-                    loggedInAs[0]=currentBorrower;
-                    userList.saveUsers(); // userlist måste öppnas och sökas igenom efter dublett av loged in as och sedan ersättas med dubletten och sparas
-                    showMainMenuBorrower();
+                borrowBook(book);
 
-
-                }
 
         }
 
 
+    }
 
-    };
+    ;
+
 
     public User getLoggedInAs() {
         return loggedInAs[0];
     }
 
-    private void bookMoreInfoMenue(int bookOrderInList) {
-        Scanner scanner = new Scanner(System.in);
-        int scannerSelection = scanner.nextInt();
-        Book book = library.getBookByIndex(scannerSelection);
-        System.out.println(book.toString());
 
-        if (book.isAvailable()) {
-            System.out.println("This book is available. To borrow this book, enter 'b'. Enter 'm' to return to main menu");
-        } else {
-            System.out.println("this book is currently unavailable. Enter 'm' to return to main menu");
-        }
+    private void borrowBook(Book book) {
 
 
-        String scannerSelectionMoreInfo = scanner.nextLine();
+        Borrower currentBorrower = (Borrower) getLoggedInAs();
+        if ((book.getIsAvailable() && !getLoggedInAs().isLibrarian())) {
 
 
-    }
-
-    //public String showBookMoreInfo(Book book){}
-
-
-    private void borrowBook() {
-
-
-        try {
-
-
-            Scanner scanner = new Scanner(System.in);
-            int scannerSelection = scanner.nextInt();
-            Book book = library.getBookByIndex(scannerSelection);
-            if (book.isAvailable()){
-            book.setAvailable(false);
-            Borrower borrowBookTo = (Borrower) Array.get(loggedInAs, 0);
-            borrowBookTo.addBorrowedBooks(book);}
-
-
+            library.borrowBook(book);
+            book.setBorrowedBy(currentBorrower);
+            currentBorrower.addBorrowedBooks(book);
+            library.getLendedBooks().add(book);
+            library.getAvailableBooks().remove(book);
+            userList.replaceBorrower((Borrower) getLoggedInAs());
+            userList.saveUsers();
             library.saveBooks();
-            System.out.println("\n Book " + book + " has been added to your borrowed books list.");
-            ;
-        } catch (IndexOutOfBoundsException e) {
-
-            System.out.println(" There is no book with that number in the current list you are showing. please try again with a different number .");
-
 
         }
+
+
+        System.out.println("Borrowed book: " + book.getTitle() + " \n Returning to All books library. \n");
+        showAllBooksInLibraryMenu();
+
     }
 
 
@@ -220,7 +258,8 @@ public class Program {
 
             try {
 
-                userList.loadUsers();
+                userList.loadBorrowers();
+                userList.loadLibrarians();
 
             } catch (NullPointerException e) {
                 e.printStackTrace();
@@ -244,6 +283,7 @@ public class Program {
                     System.out.println("logged in as borrower: " + userName);
                     loggedInAs[0] = userList.matchLogIn(userName, password, false);
                     isLoggedIn = true;
+                    showMainMenuBorrower();
 
 
                 } else if (loginType.equals("2") && userList.matchLogIn(userName, password, true) != null) {
