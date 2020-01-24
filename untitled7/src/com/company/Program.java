@@ -77,7 +77,7 @@ public class Program {
     public void showBorrowerSearchMenu() {
         System.out.println("1, Search books by title. n\" 2, Search books by author. n\" 3, return to main menu");
         Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
+        while (true) {String userInput = scanner.nextLine();
         switch (userInput) {
             case "1":
                 ArrayList<Book> searchResultTitle = new ArrayList<>();
@@ -99,8 +99,9 @@ public class Program {
                 break;
             case "3":
                 showMainMenuBorrower();
+                return;
         }
-    }
+    }}
 
     ;
 

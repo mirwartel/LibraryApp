@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c574064-f1ae-4c6a-b24e-13df370150fe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled7/out/production/LibraryApp/com/company/Library.class" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/out/production/LibraryApp/com/company/Library.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled7/out/production/LibraryApp/com/company/Program.class" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/out/production/LibraryApp/com/company/Program.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled7/out/production/LibraryApp/com/company/files/borrowers.ser" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/out/production/LibraryApp/com/company/files/borrowers.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled7/out/production/LibraryApp/com/company/files/librarians.ser" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/out/production/LibraryApp/com/company/files/librarians.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled7/src/com/company/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/src/com/company/Library.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/untitled7/src/com/company/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/src/com/company/Program.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled7/src/com/company/files/availableBooks.ser" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/src/com/company/files/availableBooks.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled7/src/com/company/files/borrowers.ser" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/src/com/company/files/borrowers.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled7/src/com/company/files/lendedBooks.ser" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/src/com/company/files/lendedBooks.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled7/src/com/company/files/librarians.ser" beforeDir="false" afterPath="$PROJECT_DIR$/untitled7/src/com/company/files/librarians.ser" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
