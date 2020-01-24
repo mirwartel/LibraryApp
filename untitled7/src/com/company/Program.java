@@ -14,6 +14,10 @@ public class Program {
     public Program() {
 
 
+
+
+
+
         showLogIn();
 
 
@@ -22,7 +26,7 @@ public class Program {
 
     public void showMainMenuBorrower() {
         if (isLoggedIn) {
-            System.out.print("\nMAIN MENU \n__________\nLogged in as: " + loggedInAs[0].getName() + "\n__________\nOptions: \n 1, View all titles \n 2, View borrowed titles \n 3, Search Book \n 4, log out \n");
+            System.out.print("\nMAIN MENU \n__________\nLogged in as: " + loggedInAs[0].getName() + "\n__________\nOptions: \n 1, View available titles \n 2, View borrowed titles \n 3, Search Book \n 4, show all books total\n 5, log out \n");
             Scanner scanner = new Scanner(System.in);
 
             while (true) {
@@ -31,7 +35,7 @@ public class Program {
                     switch (mainMenusSelections) {
                         case "1":
 
-                            showAllBooksInLibraryMenu();
+                            showAvailableBooksMenu();
 
 
                             break;
@@ -48,8 +52,15 @@ public class Program {
 
                             break;
 
-
                         case "4":
+
+                            showAllLendedBooksMenu();
+
+
+                            break;
+
+
+                        case "5":
                             logOut();
                             return;
 
@@ -111,6 +122,8 @@ public class Program {
             if (userInput.equals("m"))
                 showMainMenuBorrower();
             else {
+
+
                 try {
                     int bookIndex = Integer.parseInt(userInput);
                     Book selectedBook = currentUser.getBorrowedBooks().get(bookIndex);
@@ -127,6 +140,9 @@ public class Program {
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("No book at given index");
                 }
+                catch (NumberFormatException e){
+                    System.out.println("invalid input");
+                }
             }
         }
 
@@ -136,6 +152,8 @@ public class Program {
     ;
 
     private void logOut() {
+        library.saveBooks();
+        userList.saveUsers();
         loggedInAs[0] = null;
         isLoggedIn = false;
         System.out.println("Logged out \n");
@@ -143,7 +161,7 @@ public class Program {
 
     }
 
-    private void showAllBooksInLibraryMenu() {
+    private void showAvailableBooksMenu() {
         library.loadBooks();
         System.out.print("ALL AVAILABLE BOOKS \n ----------- \nEnter the number before a book below to show info and borrow. \nto return to main menu, enter 'm'.\n");
         for (int i = 0; i < library.getAvailableBooks().size(); i++) {
@@ -172,26 +190,42 @@ public class Program {
 
     }
 
+    private void showAllLendedBooksMenu() {
+        library.loadBooks();
+        System.out.print("List of all books, user can not borrow from this menu \n ");
+        for (int i = 0; i < library.getLendedBooks().size(); i++) {
+            System.out.println("\n "  + library.getLendedBookByIndex(i).toString());
+
+
+        }
+        for (int i = 0; i < library.getAvailableBooks().size(); i++) {
+            System.out.println("\n "  + library.getBookByIndex(i).toString());}}
+
+
+
+
     private void showBookMenu(Book book) {
         System.out.println(book.toStringLong());
-        System.out.println("enter 'm' to return to Main Menu. \n Enter 'c' to return to previous menu");
+        System.out.println("enter 'm' to return to Main Menu.");
         if (book.getIsAvailable()) {
             System.out.println("to borrow this book, enter 'b'");
         }
 
         Scanner scanner = new Scanner(System.in);
 
-
+        while (true){
         String inputChoice = scanner.nextLine();
         switch (inputChoice) {
             case "m":
                 showMainMenuBorrower();
                 break;
             case "b":
-                borrowBook(book);
+                if(book.getIsAvailable())
+                borrowBook(book);;
+                return;
 
 
-        }
+        }}
 
 
     }
@@ -224,7 +258,7 @@ public class Program {
 
 
         System.out.println("Borrowed book: " + book.getTitle() + " \n Returning to All books library. \n");
-        showAllBooksInLibraryMenu();
+        showAvailableBooksMenu();
 
     }
 

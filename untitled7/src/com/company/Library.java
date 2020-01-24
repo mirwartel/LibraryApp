@@ -26,22 +26,13 @@ public class Library implements Serializable {
 
 
 
-    public void printAvailableBooksTotal() {
-    System.out.print("Library{" + "\n" +
-            "Available Books Total: " + availableBooks.size() + "\n");
-}
-    public void printAllBooks() {
 
-        for (Book availableBook : availableBooks) {
-            System.out.println(availableBook.toString());
-
-
-        }
-
-
-    }
     public Book getBookByIndex(int index){
         return availableBooks.get(index);
+    };
+
+    public Book getLendedBookByIndex(int index){
+        return lendedBooks.get(index);
     };
 
     public void loadBooks() {
@@ -88,10 +79,6 @@ public class Library implements Serializable {
 
     }
 
-    public void setAvailableBooks(ArrayList<Book> availableBooks) {
-        availableBooks = availableBooks;
-    }
-
     public ArrayList<Book> searchBookTitle(String title){
         ArrayList<Book> bookSearchResult = new ArrayList<>();
         for (Book books : availableBooks) {
@@ -123,26 +110,7 @@ public class Library implements Serializable {
 
     }
 
-    public void setNotAvailableByBook(Book book){
 
-        for (Book bookInAllBooks : availableBooks) {
-            if (bookInAllBooks.equals(book)) {
-
-                bookInAllBooks.setIsAvailable(false);
-
-
-                System.out.println(bookInAllBooks.getIsAvailable());
-
-
-            }
-        }
-
-
-
-
-
-
-    }
 
 
 
